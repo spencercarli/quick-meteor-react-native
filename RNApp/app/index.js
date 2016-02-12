@@ -7,7 +7,11 @@ StyleSheet
 import Button from './button';
 
 import DDPClient from 'ddp-client';
-let ddpClient = new DDPClient();
+let ddpClient = new DDPClient({
+  host: 'localhost',
+  port: '3000',
+  // url: <your websocket url>
+});
 
 export default React.createClass({
   getInitialState() {
