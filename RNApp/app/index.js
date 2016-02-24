@@ -9,6 +9,7 @@ import Button from './button';
 import DDPClient from 'ddp-client';
 let ddpClient = new DDPClient({
   host: 'localhost',
+  // host: '192.168.1.3', // If using android use your device IP address
   port: '3000',
   // url: <your websocket url>
 });
@@ -24,11 +25,13 @@ export default React.createClass({
   componentDidMount() {
     ddpClient.connect((err, wasReconnect) => {
       let connected = true;
-      if (err) connected = false;
-
+      if (err) {
+        connected = false
+      } else {
+        this.makeSubscription();
+        this.observePosts();
+      }
       this.setState({ connected: connected });
-      this.makeSubscription();
-      this.observePosts();
     });
   },
 
