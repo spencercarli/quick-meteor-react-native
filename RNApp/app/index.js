@@ -51,7 +51,7 @@ export default React.createClass({
 
   makeSubscription() {
     ddpClient.subscribe("posts", [], () => {
-      this.setState({posts: ddpClient.collections.posts});
+      this.setState({posts: ddpClient.collections.posts || {} });
     });
   },
 
